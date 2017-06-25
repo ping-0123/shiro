@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/yinzhiwu/shiro/controller/HomeController.java=UTF-8
+encoding//src/main/resources/shiro-multi-realm.ini=UTF-8
+encoding//src/test/java/chapter3/AuthorizerTest.java=UTF-8
+encoding//src/test/java/chapter3/BaseTest.java=UTF-8
+encoding//src/test/java/chapter3/permission/BitPermission.java=UTF-8
+encoding//src/test/java/chapter3/realm/MyRealm.java=UTF-8
+encoding//src/test/java/test/AuthenticatorTest.java=UTF-8
+encoding//src/test/java/test/LoginLogoutTest.java=UTF-8
+encoding//src/test/java/test/authenticator/strategy/AtLeastTwoAuthenticatorStrategy.java=UTF-8
+encoding//src/test/java/test/authenticator/strategy/OnlyOneAuthenticatorStrategy.java=UTF-8
+encoding//src/test/java/test/realm/MyRealm1.java=UTF-8
+encoding//src/test/java/test/realm/MyRealm2.java=UTF-8
+encoding//src/test/java/test/realm/MyRealm3.java=UTF-8
+encoding//src/test/java/test/realm/MyRealm4.java=UTF-8

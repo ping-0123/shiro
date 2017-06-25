@@ -19,27 +19,34 @@ public class HomeController extends BaseController{
 
 	@GetMapping("/login")
 	public String loginForm(Model model){
+		logger.info("start login");
 		model.addAttribute("user", new User());
 		return "/login";
 	}
 	@PostMapping("/login")
 	public String login(@Valid User user, BindingResult bindingResult, RedirectAttributes redirectAttributes)
 	{
-		if(bindingResult.hasErrors()) return "/login";
-		//使用权限工具进行用户登录， 登录成功后跳转到shiro配置的successUrl中， 与下面的return 没有关系
+		if(bindingResult.hasErrors()) {
+			logger.info("has erros");
+			return "login";
+		}
+		//浣跨敤鏉冮檺宸ュ叿杩涜鐢ㄦ埛鐧诲綍锛� 鐧诲綍鎴愬姛鍚庤烦杞埌shiro閰嶇疆鐨剆uccessUrl涓紝 涓庝笅闈㈢殑return 娌℃湁鍏崇郴
 		try{
+			logger.info("input username and password");
 			SecurityUtils.getSubject().login(new UsernamePasswordToken(user.getName(), user.getPassword()));
+			logger.info("login successfully");
 			return "redirect:/user";
 		}catch (AuthenticationException e) {
-			redirectAttributes.addFlashAttribute("message", "用户名或密码错误");
-			return "redirect:/login"; 
+			logger.info("Authenticate failure");
+			redirectAttributes.addFlashAttribute("message", "鐢ㄦ埛鍚嶆垨瀵嗙爜閿欒");
+			return "login"; 
 		}
 	}
 	
 	@GetMapping("/logout")
 	public String logout(RedirectAttributes redirectAttributes){
 		SecurityUtils.getSubject().logout();
-		redirectAttributes.addFlashAttribute("message", "您已安全退出");
+		redirectAttributes.addFlashAttribute("message", "鎮ㄥ凡瀹夊叏閫�鍑�");
 		return "redirect:/login";
 	}
 	
