@@ -38,10 +38,11 @@ public class HomeController extends BaseController{
 			return "redirect:/user";
 		}catch (AuthenticationException e) {
 			logger.info("Authenticate failure");
-			redirectAttributes.addFlashAttribute("message", "鐢ㄦ埛鍚嶆垨瀵嗙爜閿欒");
+			redirectAttributes.addFlashAttribute("message", "Authenticate failure");
 			return "login"; 
 		}
 	}
+	
 	
 	@GetMapping("/logout")
 	public String logout(RedirectAttributes redirectAttributes){
