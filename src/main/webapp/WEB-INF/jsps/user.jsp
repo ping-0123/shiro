@@ -8,7 +8,7 @@
   </head>  
   <body>  
     <h1>${message }</h1>  
-    <h1>用户列表--<a href="/user/add">添加用户</a>---<a href="/logout">退出登录</a>    </h1>  
+    <h1>用户列表--<a href="./user/add">添加用户</a>---<a href="./logout">退出登录</a>    </h1>  
     <h2>权限列表</h2>  
     <shiro:authenticated>用户已经登录显示此内容</shiro:authenticated>  
     <shiro:hasRole name="manager">manager角色登录显示此内容</shiro:hasRole>  
@@ -22,7 +22,7 @@
     <shiro:lacksPermission name="user:del"> 不具有user:del权限的用户显示此内容 </shiro:lacksPermission>  
     <ul>  
         <c:forEach items="${userList }" var="user">  
-            <li>用户名：${user.username }----密码：${user.password }----<a href="/user/edit/${user.id}">修改用户</a>----<a href="javascript:;" class="del" ref="${user.id }">删除用户</a></li>  
+            <li>用户名：${user.username }----密码：${user.password }----<a href="./user/edit/${user.id}">修改用户</a>----<a href="javascript:;" class="del" ref="${user.id }">删除用户</a></li>  
         </c:forEach>  
     </ul>  
     <img alt="" src="/static/img/1.jpg">  

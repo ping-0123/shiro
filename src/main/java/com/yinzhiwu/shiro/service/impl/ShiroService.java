@@ -65,7 +65,7 @@ public class ShiroService extends AuthorizingRealm{
 		User user = userDao.findByUserName(token.getUsername());
 		if(user !=null)
 			//如果存在，将此用户存放到登录认证info中
-			return new SimpleAuthenticationInfo(user.getName(), user.getPassword(), getName());
+			return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), getName());
 		return null;
 	}
 }
