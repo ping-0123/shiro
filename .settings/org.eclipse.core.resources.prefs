@@ -1,5 +1,9 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/yinzhiwu/shiro/controller/HomeController.java=UTF-8
+encoding//src/main/java/com/yinzhiwu/shiro/dao/BaseDao.java=UTF-8
+encoding//src/main/java/com/yinzhiwu/shiro/entity/User.java=UTF-8
+encoding//src/main/java/com/yinzhiwu/shiro/realm/UserRealm.java=UTF-8
+encoding//src/main/java/com/yinzhiwu/shiro/service/ShiroFilerChainManager.java=UTF-8
 encoding//src/main/resources/chapter2/shiro-multi-realm.ini=UTF-8
 encoding//src/test/java/chapter3/AuthorizerTest.java=UTF-8
 encoding//src/test/java/chapter3/BaseTest.java=UTF-8

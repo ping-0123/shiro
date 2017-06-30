@@ -8,7 +8,7 @@ import com.yinzhiwu.shiro.dao.UserDao;
 import com.yinzhiwu.shiro.entity.User;
 
 @Repository
-public class UserDaoImpl extends BaseDaoImpl<User, Integer> implements UserDao {
+public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao {
 
 	@Override
 	public User findByUserName(String loginName) {

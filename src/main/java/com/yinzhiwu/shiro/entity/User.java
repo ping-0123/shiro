@@ -24,10 +24,10 @@ public class User extends BaseEntity{
 	private static final long serialVersionUID = -6757432250580429608L;
 	
 	@Column(length=32)
-	@Size(min=6, max=32, message="用户名须为6-32位字符")
+	@Size(min=4, max=32, message="用户名需4-32位字符")
 	private String username;
 	
-	@NotEmpty(message="密码不能为空")
+	@NotEmpty(message="瀵嗙爜涓嶈兘涓虹┖")
 	@Column(length=128)
 	private String password;
 	
@@ -45,9 +45,9 @@ public class User extends BaseEntity{
 	
 	
 	@ManyToMany
-	@JoinTable(name="shiro_user_role", 
-		joinColumns={@JoinColumn(name="user_id")},
-		inverseJoinColumns={@JoinColumn(name="role_id")})
+	@JoinTable(name="sys_user_role", 
+		joinColumns={@JoinColumn(name="user_id", foreignKey =@ForeignKey(name="fk_userRole_user_id"))},
+		inverseJoinColumns={@JoinColumn(name="role_id", foreignKey=@ForeignKey(name="fk_userRole_role_id"))})
 	private List<Role> roles = new ArrayList<>();
 	
 	
@@ -144,6 +144,12 @@ public class User extends BaseEntity{
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+
+
+	public String getCredentialsSalt() {
+		return username + salt;
 	}  
 	
 	 

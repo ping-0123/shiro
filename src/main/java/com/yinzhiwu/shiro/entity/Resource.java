@@ -1,11 +1,20 @@
 package com.yinzhiwu.shiro.entity;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.util.StringUtils;
 
 @Entity
 @Table(name="sys_resource")
@@ -15,12 +24,27 @@ public class Resource extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 8689302420444286023L;
+	
+    public static enum ResourceType {
+        MENU("菜单"), BUTTON("按钮");
+
+        private final String info;
+        private ResourceType(String info) {
+            this.info = info;
+        }
+
+        public String getInfo() {
+            return info;
+        }
+    }
+
 
 	@Column(length=32)
 	private String name;
 	
 	@Column(length=32)
-	private String type;
+	@Enumerated(EnumType.STRING)
+	private ResourceType type;
 	
 	@Column(length=32)
 	private String url;
@@ -32,16 +56,42 @@ public class Resource extends BaseEntity {
 	@Column(length=32, name="parent_ids")
 	private String parentIds;
 	
-	@Column(length=128)
-	private String permission;
+	@ManyToOne
+	@JoinColumn(foreignKey=@ForeignKey(name="fk_resource_permission_id"))
+	private Permission permission;
 	
 	private Boolean available = Boolean.TRUE;
+
+	@OneToMany(mappedBy="parent")
+	private List<Resource> childs = new ArrayList<>();
+	
+	public List<Resource> getChilds() {
+		return childs;
+	}
+
+	/**
+	 * 
+	 * @return 返回所有的子孙资源
+	 */
+	public List<Resource> getAllChilds(){
+		List<Resource> resources = new ArrayList<>();
+		if(childs.size()>0){
+			for (Resource res : childs) {
+				resources.addAll(res.getAllChilds());
+			}
+		}
+		return resources;
+	}
+	
+	public void setChilds(List<Resource> childs) {
+		this.childs = childs;
+	}
 
 	public String getName() {
 		return name;
 	}
 
-	public String getType() {
+	public ResourceType getType() {
 		return type;
 	}
 
@@ -57,7 +107,7 @@ public class Resource extends BaseEntity {
 		return parentIds;
 	}
 
-	public String getPermission() {
+	public Permission getPermission() {
 		return permission;
 	}
 
@@ -69,7 +119,7 @@ public class Resource extends BaseEntity {
 		this.name = name;
 	}
 
-	public void setType(String type) {
+	public void setType(ResourceType type) {
 		this.type = type;
 	}
 
@@ -85,7 +135,7 @@ public class Resource extends BaseEntity {
 		this.parentIds = parentIds;
 	}
 
-	public void setPermission(String permission) {
+	public void setPermission(Permission permission) {
 		this.permission = permission;
 	}
 
@@ -93,5 +143,12 @@ public class Resource extends BaseEntity {
 		this.available = available;
 	}
 	
+	public String getPermissionName(){
+		return permission==null ? null: permission.getName();
+	}
+	
+	  public boolean isRootNode() {
+	        return parent == null;
+	    }
 	
 }

@@ -28,11 +28,14 @@ public class Role extends BaseEntity {
 	
 	private Boolean available=Boolean.TRUE;
 	
-	@OneToMany(mappedBy="role")
+	@ManyToMany
+	@JoinTable(name="sys_role_permission", 
+			joinColumns=@JoinColumn(name="role_id"),
+			inverseJoinColumns=@JoinColumn(name="permission_id"))
 	private List<Permission> pemissions = new ArrayList<>();
 	
 	@ManyToMany
-	@JoinTable(name="shiro_user_role",
+	@JoinTable(name="sys_user_role",
 		joinColumns={@JoinColumn(name="role_id")},
 		inverseJoinColumns={@JoinColumn(name="user_id")})
 	private List<User> users = new ArrayList<>();

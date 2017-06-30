@@ -7,7 +7,7 @@ import com.yinzhiwu.shiro.entity.PageBean;
 import com.yinzhiwu.shiro.exception.DataNotFoundException;
 
 
-public interface BaseDao<T ,PK extends Serializable> {
+public interface BaseDao<T , PK extends Serializable> {
 
 		public T get(PK id);
 		public PK save(T entity);
@@ -23,7 +23,7 @@ public interface BaseDao<T ,PK extends Serializable> {
 		public int findCountByProperties(String[] propertyNames, Object[] values);
 		
 		/**
-		 * 如果T中的某一成员变量的class为@Entity注解, 则查询时忽略该属性， 即查询语句没有表的关联
+		 * 濡傛灉T涓殑鏌愪竴鎴愬憳鍙橀噺鐨刢lass涓篅Entity娉ㄨВ, 鍒欐煡璇㈡椂蹇界暐璇ュ睘鎬э紝 鍗虫煡璇㈣鍙ユ病鏈夎〃鐨勫叧鑱�
 		 * 
 		 * @param entity
 		 * @return

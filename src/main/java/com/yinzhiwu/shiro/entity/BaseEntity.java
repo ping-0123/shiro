@@ -36,7 +36,7 @@ public abstract class BaseEntity implements Serializable{
 	@Id  
     @Column(nullable = false)  
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;  
+    private Long id;  
     /** 
      * �������� 
      */  
@@ -73,11 +73,11 @@ public abstract class BaseEntity implements Serializable{
 	}
 
 
-    public Integer getId() {  
+    public Long getId() {  
         return id;  
     }  
   
-    public void setId(int id) {  
+    public void setId(long id) {  
         this.id = id;  
     }  
   

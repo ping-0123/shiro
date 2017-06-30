@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yinzhiwu.shiro.entity.User;
 
-@Controller
+//@Controller
 public class HomeController extends BaseController{
 	
 

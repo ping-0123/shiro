@@ -8,7 +8,7 @@ import com.yinzhiwu.shiro.entity.Role;
 import com.yinzhiwu.shiro.service.RoleService;
 
 @Service
-public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements RoleService{
+public class RoleServiceImpl extends BaseServiceImpl<Role, Long> implements RoleService{
 
 	@Autowired public void setDao(RoleDao dao){ super.setBaseDao(dao);}
 }
