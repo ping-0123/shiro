@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="shiro_permission")
+@Table(name="sys_permission")
 public class Permission extends BaseEntity{
 	private static final long serialVersionUID = 7525405111409749914L;
 	

@@ -1,5 +1,6 @@
 package com.yinzhiwu.shiro.controller;
 
+import javax.security.auth.Subject;
 import javax.validation.Valid;
 
 import org.apache.shiro.SecurityUtils;
@@ -16,6 +17,7 @@ import com.yinzhiwu.shiro.entity.User;
 
 @Controller
 public class HomeController extends BaseController{
+	
 
 	@GetMapping("/login")
 	public String loginForm(Model model){
@@ -33,8 +35,10 @@ public class HomeController extends BaseController{
 		//浣跨敤鏉冮檺宸ュ叿杩涜鐢ㄦ埛鐧诲綍锛� 鐧诲綍鎴愬姛鍚庤烦杞埌shiro閰嶇疆鐨剆uccessUrl涓紝 涓庝笅闈㈢殑return 娌℃湁鍏崇郴
 		try{
 			logger.info("input username and password");
-			SecurityUtils.getSubject().login(new UsernamePasswordToken(user.getName(), user.getPassword()));
+			org.apache.shiro.subject.Subject subject =SecurityUtils.getSubject();
+			subject.login(new UsernamePasswordToken(user.getUsername(), user.getPassword()));
 			logger.info("login successfully");
+			logger.info("Seesion id is: " + subject.getSession(true).getId());
 			return "redirect:/user";
 		}catch (AuthenticationException e) {
 			logger.info("Authenticate failure");
